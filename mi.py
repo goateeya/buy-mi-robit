@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 import datetime
+import read-conf
 
 def has_page_loaded(driver, elem):
     timeout = 10
@@ -16,8 +17,9 @@ def refresh(driver):
     return
     
 def main():
-    fb_username = 'username'
-    fb_password = 'password'    
+    profile = load_profile('profile.ini', 'facebook')
+    fb_username = profile['username']
+    fb_password = profile['password']
     
     driver.set_page_load_timeout(30)
     driver.get("http://event.mi.com/tw/mff2017")
